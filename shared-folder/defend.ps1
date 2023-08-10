@@ -1,7 +1,8 @@
 function testInternetAccess()
 {
 
+Invoke-WebRequest -Uri https://ipinfo.io/ip -UseBasicParsing | Select-Object StatusCode
 }
 
-//run testInternetAccess function
+#run testInternetAccess function
 testInternetAccess
