@@ -9,16 +9,31 @@ $webResponse = Invoke-WebRequest -Uri https://ipinfo.io/ip
 #checks the response for the flag StatusCode and if its equal to 200 returns internet connection successfull
 if($webResponse.StatusCode -eq 200)
 {
-echo "Web response 200 iternet connection successful"
- 
+
+ return $true, $webResponse.content;
 }else
 {
 #if any other response assumes the internet is down and will attempt to communicate with a alternate server
 #to check if the server is down or if the internet is definitly down.
-echo "web response returned $webRespons"
 echo "web response failed attempting alternate server"
+$webRespons = Invoke-WebRequest -Uri www.google.com
+if($webResponse.StatusCode -eq 200)
+{
+#second connection sucsessful 
+return $true
+}else
+{
+#second connection failed
+return $false
+}
 }
 }
 
 #run testInternetAccess function
-testInternetAccess
+if(testInternetAccess -eq $true)
+{
+echo "Web response 200 iternet connection successful"
+}else
+{
+echo "Web request failed no internet connection"
+}
