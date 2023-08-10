@@ -1,4 +1,4 @@
-function testWDAC()
+function testInternetAccess()
 {
 
 }
