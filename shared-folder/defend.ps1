@@ -3,5 +3,5 @@ function testInternetAccess()
 
 }
 
-//run testWDAC function
-testWDAC
+//run testInternetAccess function
+testInternetAccess
