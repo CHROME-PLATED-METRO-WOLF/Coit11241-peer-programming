@@ -45,7 +45,7 @@ function resetRestrictInternet()
 
 
 
-
+#check command line for passed in arguments if they equal testInternetAccess or enableRestrictInternet or resetRestrictInternet run coresponding function
 if($args[0] -eq "testInternetAccess")
 {
 #run testInternetAccess function
