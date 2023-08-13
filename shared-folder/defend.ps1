@@ -62,4 +62,7 @@ enableRestrictInternet
 }elseIf($args[0] -eq "resetRestrictInternet")
 {
 resetRestrictInternet
+}else
+{
+echo "Please enter a valid option: testInternetAccess or enableRestrictInternet or resetRestrictInternet"
 }
