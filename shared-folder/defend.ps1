@@ -56,4 +56,10 @@ if(testInternetAccess -eq $true)
 {
     echo "Web request failed no internet connection"
 }
+}elseIf($args[0] -eq "enableRestrictInternet")
+{
+enableRestrictInternet
+}elseIf($args[0] -eq "resetRestrictInternet")
+{
+resetRestrictInternet
 }
