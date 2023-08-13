@@ -31,7 +31,7 @@ return $false
 
 function enableRestrictInternet()
 {
-
+[System.Net.HttpWebRequest]::DefaultWebProxy = New-Object System.Net.WebProxy("http://proxy",$true)
 }
 
 #run testInternetAccess function
