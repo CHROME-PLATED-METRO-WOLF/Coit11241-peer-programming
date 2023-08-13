@@ -16,7 +16,7 @@ function testInternetAccess()
         #if any other response assumes the internet is down and will attempt to communicate with a alternate server
         #to check if the server is down or if the internet is definitly down.
         echo "web response failed attempting alternate server"
-        $webRespons = Invoke-WebRequest -Uri www.google.com
+        $webResponse = Invoke-WebRequest -Uri www.google.com
         if($webResponse.StatusCode -eq 200)
         {
             #second connection sucsessful
