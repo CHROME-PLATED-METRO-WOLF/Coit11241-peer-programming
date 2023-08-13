@@ -1,24 +1,35 @@
+
+
 function testInternetAccess()
 {
     #invoke-webRequest sends a web request and returnes the response
     #can use -UseBasicParsing | Select-Object StatusCode to display its status code 200 means OK
     #I used the website ipinfo.io/ip to check internet connection, it is a simple service that returns
     #the ip address of the request and has high avaliability
-    $webResponse = Invoke-WebRequest -Uri https://ipinfo.io/ip
-    
+    try{
+    $webResponse = Invoke-WebRequest -Uri https://ipinfo.io/ip 
+    }catch
+    {
+    #catch and do nothing, if a error happens it means internet is not working and therefore should return false, prevents ugly error messages in console when there is no internet
+    }
     #checks the response for the flag StatusCode and if its equal to 200 returns internet connection successfull
     if($webResponse.StatusCode -eq 200)
     {
-        
+     
         return $true, $webResponse.content;
     }else
     {
         #if any other response assumes the internet is down and will attempt to communicate with a alternate server
         #to check if the server is down or if the internet is definitly down.
-        Write-Output "web response failed attempting alternate server"
-        $webResponse = Invoke-WebRequest -Uri www.google.com
-        if($webResponse.StatusCode -eq 200)
+        try
         {
+        $webResponse = Invoke-WebRequest -Uri www.google.com
+        }catch
+        {
+        #catch and do nothing, if a error happens it means internet is not working and therefore should return false, prevents ugly error messages in console when there is no internet
+        }
+        if($webResponse.StatusCode -eq 200)
+        {    
             #second connection sucsessful
             return $true
         }else
@@ -27,6 +38,7 @@ function testInternetAccess()
             return $false
         }
     }
+    return $false;
 }
 
 function enableRestrictInternet()
@@ -50,7 +62,7 @@ if($args[0] -eq "testInternetAccess")
 {
     Write-Output "testing internet access"
     #run testInternetAccess function
-    if(testInternetAccess -eq $true)
+    if(testInternetAccess)
     {
         Write-Output "Web response 200 iternet connection successful"
     }else
@@ -61,7 +73,7 @@ if($args[0] -eq "testInternetAccess")
 {
     Write-Output "restricting internet access"
     enableRestrictInternet
-    if(testInternetAccess -eq $true)
+    if(testInternetAccess)
     {
         Write-Output "error: Web response 200 internet still avaliable"
         Write-Output "please contact your administrator"
@@ -69,7 +81,7 @@ if($args[0] -eq "testInternetAccess")
     {
         Write-Output "success: no internet connection"
     }
-}elseIf($args[0] -eq "resetRestrictInternet")
+}elseIf($args[0] )
 {
     Write-Output "re-enabling internet"
     resetRestrictInternet
