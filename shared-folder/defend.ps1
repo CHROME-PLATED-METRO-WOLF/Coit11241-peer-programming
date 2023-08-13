@@ -48,39 +48,39 @@ function resetRestrictInternet()
 #check command line for passed in arguments if they equal testInternetAccess or enableRestrictInternet or resetRestrictInternet run coresponding function
 if($args[0] -eq "testInternetAccess")
 {
-echo "testing internet access"
-#run testInternetAccess function
-if(testInternetAccess -eq $true)
-{
-    echo "Web response 200 iternet connection successful"
-}else
-{
-    echo "Web request failed no internet connection"
-}
+    echo "testing internet access"
+    #run testInternetAccess function
+    if(testInternetAccess -eq $true)
+    {
+        echo "Web response 200 iternet connection successful"
+    }else
+    {
+        echo "Web request failed no internet connection"
+    }
 }elseIf($args[0] -eq "enableRestrictInternet")
 {
-echo "restricting internet access"
-enableRestrictInternet
-if(testInternetAccess -eq $true)
-{
-    echo "error: Web response 200 internet still avaliable"
-    echo "please contact your administrator"
-}else
-{
-    echo "success: no internet connection"
-}
+    echo "restricting internet access"
+    enableRestrictInternet
+    if(testInternetAccess -eq $true)
+    {
+        echo "error: Web response 200 internet still avaliable"
+        echo "please contact your administrator"
+    }else
+    {
+        echo "success: no internet connection"
+    }
 }elseIf($args[0] -eq "resetRestrictInternet")
 {
-echo "re-enabling internet"
-resetRestrictInternet
-if(testInternetAccess -eq $true)
-{
-    echo "success: Web response 200 iternet connection successful"
+    echo "re-enabling internet"
+    resetRestrictInternet
+    if(testInternetAccess -eq $true)
+    {
+        echo "success: Web response 200 iternet connection successful"
+    }else
+    {
+        echo "Web request failed no internet connection"
+    }
 }else
 {
-    echo "Web request failed no internet connection"
-}
-}else
-{
-echo "Please enter a valid option: testInternetAccess or enableRestrictInternet or resetRestrictInternet"
+    echo "Please enter a valid option: testInternetAccess or enableRestrictInternet or resetRestrictInternet"
 }
