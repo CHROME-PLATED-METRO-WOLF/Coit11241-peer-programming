@@ -41,6 +41,13 @@ function resetRestrictInternet()
     [System.Net.HttpWebRequest]::DefaultWebProxy = New-Object System.Net.WebProxy($null)
 }
 
+
+
+
+
+
+if($args[0] -eq "testInternetAccess")
+{
 #run testInternetAccess function
 if(testInternetAccess -eq $true)
 {
@@ -48,4 +55,5 @@ if(testInternetAccess -eq $true)
 }else
 {
     echo "Web request failed no internet connection"
+}
 }
