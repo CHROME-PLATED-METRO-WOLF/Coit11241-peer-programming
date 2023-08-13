@@ -29,6 +29,11 @@ return $false
 }
 }
 
+function enableRestrictInternet()
+{
+
+}
+
 #run testInternetAccess function
 if(testInternetAccess -eq $true)
 {
