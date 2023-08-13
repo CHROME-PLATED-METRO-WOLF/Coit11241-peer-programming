@@ -31,11 +31,13 @@ return $false
 
 function enableRestrictInternet()
 {
+#sets proxy server to http://proxy which doesnt exist and enables it effectively blocking internet
 [System.Net.HttpWebRequest]::DefaultWebProxy = New-Object System.Net.WebProxy("http://proxy",$true)
 }
 
 function resetRestrictInternet()
 {
+#sets proxy server to null removing the proxy and allowing internet
 [System.Net.HttpWebRequest]::DefaultWebProxy = New-Object System.Net.WebProxy($null)
 }
 
